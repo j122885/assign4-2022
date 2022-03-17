@@ -15,28 +15,30 @@ function BlogForm(props) {
 
         e.preventDefault()
 
-        const obj = {
-            user: user,
-            postTitle: postTitle,
-            blogPost: blogPost,
-            index: currentArr.length
-        }
-
-       currentArr.forEach(element => arr.push(element));
-        arr.push(obj)
-        props.setArr(arr);
+        
 
 
         axios.post('https://jsonplaceholder.typicode.com/posts', {
-                user: user,
-                postTitle: postTitle,
-                blogPost: blogPost,
-                index: currentArr.length
+            userId: user,
+            title: postTitle,
+            body: blogPost,
+            id: currentArr.length
           })
           .then(function (response) {
             console.log(response);
+            if(response.status == 201){
+                const obj = {
+                    userId: user,
+                    title: postTitle,
+                    body: blogPost,
+                    id: currentArr.length
+                }
+        
+               currentArr.forEach(element => arr.push(element));
+                arr.push(obj)
+                props.setArr(arr);
+            }
           })
-          
 
     }
     return (
