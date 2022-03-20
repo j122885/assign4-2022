@@ -8,26 +8,26 @@ function App() {
   const [posts, setPosts] =useState([]);
 
   useEffect(() => {
-    const getPosts = async () =>{
-      //get data from typicode
-       await axios.get('https://jsonplaceholder.typicode.com/posts')
-        .then(function (response) {
-          response.data = response.data.filter(element => element.id <= 4);
-         setPosts(response.data);
-          return response;
-        })
-        .catch(function (error) {
-          // handle error
-          console.log(error);
-          return error;
-        })
-        .then(function () {
-          // always executed
-        });
-      }
     getPosts();
   }, []);
 
+  const getPosts = async () =>{
+    //get data from typicode
+     await axios.get('https://jsonplaceholder.typicode.com/posts')
+      .then(function (response) {
+        response.data = response.data.filter(element => element.id <= 4);
+       setPosts(response.data);
+        return response;
+      })
+      .catch(function (error) {
+        // handle error
+        console.log(error);
+        return error;
+      })
+      .then(function () {
+        // always executed
+      });
+    }
 
   return (
   <>
