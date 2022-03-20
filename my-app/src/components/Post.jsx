@@ -9,7 +9,7 @@ function Post(props){
         case "3": username = "Clementine Bauch"; break;
         default : username = props.user;
     }
-    var currentArr= props.arr;
+    var currentArr= props.posts;
     var mutatedArr = [];
 
     function onDelete () {
@@ -18,15 +18,14 @@ function Post(props){
         //     method: 'DELETE',
         //   });
 
-
       currentArr.forEach(element => mutatedArr.push(element));
       mutatedArr = mutatedArr.filter(element => element.id !=  props.id);
-      props.setArr(mutatedArr);
+      props.setPosts(mutatedArr);
         
     }
     return(
         <>
-            <div className="row mb-3">
+            <div className="row mb-3" >
                     <div className="col-4">
                         <h4>{props.title}</h4>
                     </div>

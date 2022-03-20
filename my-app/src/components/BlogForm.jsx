@@ -8,16 +8,13 @@ function BlogForm(props) {
     const [blogPost, setBlogPost] = useState("");
     
 
-    var currentArr= props.arr;
-    var arr = [];
+    var currentArr= props.posts;
+    var posts = [];
 
     const onSubmit = (e) => {
 
-        e.preventDefault()
-
-        
-
-
+      e.preventDefault()
+      if( user != '' && postTitle != '' && blogPost != ''){
         axios.post('https://jsonplaceholder.typicode.com/posts', {
             userId: user,
             title: postTitle,
@@ -31,15 +28,17 @@ function BlogForm(props) {
                     userId: user,
                     title: postTitle,
                     body: blogPost,
-                    id: currentArr.length
+                    id: currentArr.length+1
                 }
         
-               currentArr.forEach(element => arr.push(element));
-                arr.push(obj)
-                props.setArr(arr);
+               currentArr.forEach(element => posts.push(element));
+                posts.push(obj)
+                props.setPosts(posts);
             }
           })
-
+        }else{
+          alert("Please fill in all fields.")
+        }
     }
     return (
         <>
